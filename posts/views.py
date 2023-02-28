@@ -3,7 +3,8 @@ from django.http import HttpResponse
 
 
 def posts(request):
-    return HttpResponse('<h1>Testing the app</h1>')
+    post_list = ['Post1', 'Post2', 'Post3']
+    return render(request=request, template_name='posts/post.html', context={'post_list': post_list})
 
 
 
