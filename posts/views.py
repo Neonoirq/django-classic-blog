@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
+from .models import Post
 
 
 def posts(request):
-    post_list = ['Post1', 'Post2', 'Post3']
+    post_list = Post.objects.all()
     return render(request=request, template_name='posts/post.html', context={'post_list': post_list})
 
 
-
+def post_detail(request, slug):
+    post = Post.objects.get(slug__iexact=slug)
+    return render(request=request, template_name='posts/post_detail.html', context={'post': post})

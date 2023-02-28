@@ -1,14 +1,27 @@
 {% extends "posts/base_post.html" %}
 
 {% block title %}
-    Posts
+Posts
 {% endblock %}
 
 
 {% block content %}
-    <h1>Posts:</h1>
-    {% for post in post_list %}
-        <p>{{ post }}</p>
-    {% endfor %}
-    
+<h1>Posts:</h1>
+{% for post in post_list %}
+<div class="card text-bg-dark mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{ post.image.url }}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.body|truncatewords:12 }}</p>
+                    <p class="card-text"><small>{{ post.author}} {{ post.date_pub}}</small></p>
+                <a href="{{ post.get_absolute_url }}" class="btn btn-light">Read</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}
