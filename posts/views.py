@@ -3,6 +3,10 @@ from django.shortcuts import render
 from .models import Post
 
 
+def home(request):
+    return render(request=request, template_name='posts/home.html')
+
+
 def posts(request):
     post_list = Post.objects.all()
     return render(request=request, template_name='posts/post.html', context={'post_list': post_list})
